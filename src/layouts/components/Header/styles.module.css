@@ -1,0 +1,25 @@
+.header {
+    transition: all 0.5s;
+    z-index: 997;
+    padding: 10px 0;
+    background-color: var(--secondary);
+  }
+  
+  .logo {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    line-height: 1;
+  }
+  
+  .logo span {
+    color: #ffffff;
+    margin-left: 8px;
+  }
+  
+  @media (max-width: 991px) {
+    .logo span {
+      display: none;
+    }
+  }
+  

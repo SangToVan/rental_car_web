@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Roboto', 'Montserrat', sans-serif;
 }
 
 a {
@@ -11,6 +14,7 @@ a {
 
 :root {
   --primary: #5FCF86;
+  --secondary: #FFFFFF;
   --avatar-header-size: 40px;
   --margin-top-header: 60px;
 }
@@ -68,7 +72,7 @@ a {
   display: flex;
   list-style: none;
   align-items: center;
-  color: #ffffff;
+  color: #000;
 }
 
 .navbar li {
@@ -85,7 +89,7 @@ a {
   padding: 8px 0 8px 30px;
   font-size: 16px;
   font-weight: 500;
-  color: #ffffff;
+  color: #000;
   white-space: nowrap;
   transition: 0.3s;
 }
