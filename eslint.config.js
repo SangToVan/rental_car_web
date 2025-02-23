@@ -52,7 +52,7 @@ export default [
       'object-curly-spacing': ['warn', 'always'],
       'indent': ['warn', 2],
       'semi': ['warn', 'never'],
-      'quotes': ['error', 'single'],
+      'quotes': ['error', 'single', 'double'],
       'array-bracket-spacing': 'warn',
       'linebreak-style': 'off',
       'no-unexpected-multiline': 'warn',

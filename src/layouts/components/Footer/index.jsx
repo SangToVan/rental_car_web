@@ -1,94 +1,93 @@
-import clsx from 'clsx'
-import style from './styles.module.css'
-import logoImg from '../../../assets/img-logo.png'
-import { Link } from 'react-router-dom'
+import clsx from "clsx";
+import style from "./styles.module.css";
+import logoImg from "../../../assets/img-logo.png";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
     <footer id="footer" className={style.footer}>
       <div className="footer-top">
-        <div className="w-[100%] h-[0px] opacity-60 border border-black"></div>
-        <div className="container">
-          <div className="row pt-4">
-            <div className={clsx('col-md-4', style.footer_links)}>
-              <h1 className={clsx('me-auto', style.logo)}>
-                <Link to="/">
-                  <img
-                    src={logoImg}
-                    alt='Rental Car Website'
-                    className="h-[74px] w-[216px]"
-                  >
-                  </img>
-                </Link>
-              </h1>
-              <ul className="mt-3">
-                <li>
-                  <ul>
-                    <li>
-                      <p>1900 1900</p>
-                    </li>
-                    <li>
-                      <p>Tổng đài hỗ trợ: 7AM - 10PM</p>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <ul>
-                    <li>
-                      <p>contact@saoto.vn</p>
-                    </li>
-                    <li>
-                      <p>Gửi mail cho Saoto</p>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+        <div className="absolute w-[1242px] h-[320px] top-[2292px] left-[99px]">
+          <div className="absolute w-[300px] h-[225px] top-[30px] left-[30px]">
+            <Link to="/">
+              <img
+                src={logoImg}
+                alt="Rental Car Website"
+                className="w-[243px] h-[74px] absolute top-0 left-0 object-cover"
+              ></img>
+            </Link>
+
+            <div className="absolute w-[304px] h-[57px] top-[90px] left-0">
+              <div className="absolute w-28 h-[23px] top-0 left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+                1900 1900
+              </div>
+
+              <p className="absolute w-[300px] h-[23px] top-[34px] left-0 opacity-60 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+                Tổng đài hỗ trợ: 7AM - 10PM
+              </p>
             </div>
-            <div className={clsx('col-md-4', style.footer_links)}>
-              <h5>Chính sách</h5>
-              <ul className="mt-3">
-                <li>
-                  {/* <Link to="/my-booking">Manage bookings</Link> */}
-                  <p>Chính sách và quy định</p>
-                </li>
-                <li>
-                  {/* <Link to="/wallet">Manage wallet</Link> */}
-                  <p>Quy chế hoạt động</p>
-                </li>
-                <li>
-                  {/* <Link to="/my-cars">Manage cars</Link> */}
-                  <p>Bảo mật thông tin</p>
-                </li>
-                <li>
-                  {/* <Link to="/my-cars">Manage cars</Link> */}
-                  <p>Giải quyết tranh chấp</p>
-                </li>
-              </ul>
+
+            <div className="absolute w-[204px] h-[57px] top-[168px] left-0">
+              <div className="absolute w-[193px] h-[23px] top-0 left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+                contact@saoto.vn
+              </div>
+
+              <div className="absolute w-[200px] h-[23px] top-[34px] left-0 opacity-60 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+                Gửi mail cho Saoto
+              </div>
             </div>
-            <div className={clsx('col-md-4', style.footer_links)}>
-              <h5>Tìm hiểu thêm</h5>
-              <ul className="mt-3">
-                <li>
-                  {/* <Link to="/">Log in</Link> */}
-                  <p>Hướng dẫn chung</p>
-                </li>
-                <li>
-                  {/* <Link to="/">Sign up</Link> */}
-                  <p>Hướng dẫn đặt xe</p>
-                </li>
-                <li>
-                  {/* <Link to="/">Sign up</Link> */}
-                  <p>Hướng dẫn thanh toán</p>
-                </li>
-                <li>
-                  {/* <Link to="/">Sign up</Link> */}
-                  <p>Hỏi và trả lời</p>
-                </li>
-              </ul>
+          </div>
+
+          <div className="absolute w-[310px] h-[220px] top-[30px] left-[471px]">
+            <div className="absolute w-44 h-7 top-0 left-0 [font-family:'Roboto',Helvetica] font-semibold text-black text-xl tracking-[0] leading-[normal]">
+              Chính sách
+            </div>
+
+            <p className="absolute w-[300px] h-[23px] top-14 left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+              Chính sách và quy định
+            </p>
+
+            <div className="absolute w-[246px] h-[23px] top-[103px] left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+              Quy chế hoạt động
+            </div>
+
+            <div className="absolute w-[228px] h-[23px] top-[150px] left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+              Bảo mật thông tin
+            </div>
+
+            <div className="absolute w-[276px] h-[23px] top-[197px] left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+              Giải quyết tranh chấp
+            </div>
+          </div>
+
+          <div className="absolute w-[310px] h-[220px] top-[30px] left-[912px]">
+            <div className="absolute w-[235px] h-7 top-0 left-0 [font-family:'Roboto',Helvetica] font-semibold text-black text-xl tracking-[0] leading-[normal]">
+              Tìm hiểu thêm
+            </div>
+
+            <div className="absolute w-[239px] h-[23px] top-14 left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+              Hướng dẫn chung
+            </div>
+
+            <div className="absolute w-[239px] h-[23px] top-[103px] left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+              Hướng dẫn đặt xe
+            </div>
+
+            <div className="absolute w-[300px] h-[23px] top-[150px] left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+              Hướng dẫn thanh toán
+            </div>
+
+            <div className="absolute w-[167px] h-[23px] top-[197px] left-0 [font-family:'Roboto',Helvetica] font-normal text-black text-lg tracking-[0] leading-[normal]">
+              Hỏi và trả lời
             </div>
           </div>
         </div>
+        <img
+          className="absolute w-full h-px top-[2291px] left-0 object-cover"
+          alt="Line"
+          src="https://c.animaapp.com/TzXYRGLE/img/line-4.svg"
+        />
       </div>
     </footer>
-  )
+  );
 }
