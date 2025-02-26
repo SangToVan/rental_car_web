@@ -62,7 +62,7 @@ a {
 # Navbar
 --------------------------------------------------------------*/
 
-.navbar {
+/* .navbar {
   padding: 0;
 }
 
@@ -165,7 +165,7 @@ a {
   .navbar .dropdown .dropdown:hover > ul {
     left: -100%;
   }
-}
+} */
 
 .w-content {
   width: max-content;

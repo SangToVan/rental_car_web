@@ -11,27 +11,86 @@ export default function Header({ onOpenAuthModal }) {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
 
-  const onOpenLoginModal = () => {
-    onOpenAuthModal(true);
-  };
+  const openAuthModal = (isLogin) => onOpenAuthModal(isLogin);
 
-  const onOpenSignupModal = () => {
-    onOpenAuthModal(false);
+  const renderProfileMenu = () => {
+    const menuItems = [
+      { path: "/my-profile", label: "My profile" },
+      ...(user?.role === ROLE.CUSTOMER
+        ? [{ path: "/my-booking", label: "My booking" }]
+        : []),
+      ...(user?.role === ROLE.OWNER
+        ? [
+            { path: "/my-cars", label: "My cars" },
+            { path: "/my-reports", label: "My reports" },
+          ]
+        : []),
+      ...(user?.role !== ROLE.ADMIN
+        ? [{ path: "/wallet", label: "My wallet" }]
+        : []),
+    ];
+
+    return (
+      <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+        {menuItems.map(({ path, label }) => (
+          <li key={path}>
+            <Link className="dropdown-item d-flex align-items-center" to={path}>
+              <span>{label}</span>
+            </Link>
+          </li>
+        ))}
+        <li>
+          <hr className="dropdown-divider" />
+        </li>
+        <li>
+          <button
+            className="dropdown-item d-flex align-items-center"
+            onClick={() => setShow(true)}
+          >
+            <span>Log out</span>
+          </button>
+        </li>
+      </ul>
+    );
   };
 
   return (
     <>
-      <header id="header" className={clsx("fixed-top", styles.header)}>
-        <div className="absolute w-[1440px] h-[121px] top-0 left-0 bg-white rounded-[3px]">
-          <div className="relative w-[1249px] h-[65px] top-7 left-[100px]">
-            <Link to="/">
-              <img
-                src={logoImg}
-                alt="Rental Car Website"
-                className="w-[190px] h-[65px] absolute top-0 left-0 object-cover"
-              ></img>
-            </Link>
-            <div className="absolute top-[22px] left-[680px]">
+      <div className="w-full h-30 bg-white rounded-[3px]">
+        <Link to="/">
+          <img
+            src={logoImg}
+            alt="Rental Car Website"
+            className="w-[190px] h-[65px] top-7 left-[92px] absolute object-cover"
+          ></img>
+        </Link>
+
+        <div className="absolute w-[600px] h-14 top-8 right-[92px]">
+          <div className="absolute w-[300px] h-14 top-0 right-0">
+            <div className="absolute w-36 h-14 top-0 right-0">
+              <Link onClick={() => openAuthModal(true)}>
+                <div className="relative w-[142px] h-14 rounded-[10px] border border-solid border-black">
+                  <div className="top-[15px] left-[25px] absolute [font-family:'Roboto',Helvetica] font-medium text-black text-lg text-center tracking-[0.50px] leading-6 whitespace-nowrap">
+                    Đăng nhập
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className="absolute w-36 h-14 top-0 left-0">
+              <div className="top-4 left-9 absolute">
+                <Link
+                  onClick={() => openAuthModal(false)}
+                  className="[font-family:'Roboto',Helvetica] font-medium text-black text-lg text-center tracking-[0.50px] leading-6 whitespace-nowrap"
+                >
+                  Đăng ký
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute w-[300px] h-6 top-4 left-0">
+            <div className="absolute top-0 left-0 ">
               <Link
                 to="/"
                 className="[font-family:'Roboto',Helvetica] font-medium text-black text-lg text-center tracking-[0.50px] leading-6 whitespace-nowrap"
@@ -40,7 +99,7 @@ export default function Header({ onOpenAuthModal }) {
               </Link>
             </div>
 
-            <div className="absolute top-[22px] left-[801px]">
+            <div className="absolute top-0 right-9 ">
               <Link
                 to="/"
                 className="[font-family:'Roboto',Helvetica] font-medium text-black text-lg text-center tracking-[0.50px] leading-6 whitespace-nowrap"
@@ -48,116 +107,95 @@ export default function Header({ onOpenAuthModal }) {
                 Trở thành chủ xe
               </Link>
             </div>
+          </div>
 
-            {isAuthenticated ? (
-              <li className="nav-item dropdown pe-3">
+          <img
+            className="absolute w-px h-14 top-0 left-[302px] object-cover"
+            alt="Line"
+            src="https://c.animaapp.com/bSh3vUdE/img/line-1.svg"
+          />
+        </div>
+      </div>
+      {/* <div className="w-96 h-20 left-0 top-0 relative">
+          <div className="w-96 h-20 left-0 top-0 absolute bg-white rounded-sm" />
+          <div className="w-96 h-16 left-[95px] top-2 absolute">
+            <Link to="/">
+              <img
+                src={logoImg}
+                alt="Rental Car Website"
+                className="w-48 h-16 left-0 top-0 absolute"
+              ></img>
+            </Link>
+            <div className="w-96 h-14 left-[687px] top-[6px] absolute">
+              <div className="left-0 top-[16px] absolute text-center ">
                 <Link
-                  className="nav-link nav-profile d-flex align-items-center pe-0"
-                  to="#"
-                  data-bs-toggle="dropdown"
+                  to="/"
+                  className="text-black text-lg font-medium font-['Roboto'] leading-normal tracking-wide"
                 >
-                  <img
-                    src={user?.avatar || placeholderImg}
-                    alt="Profile"
-                    className="rounded-circle img-profile"
-                  />
-                  <span className="d-none d-md-block dropdown-toggle ps-2 fs-6">
-                    {user?.username}
-                  </span>
+                  Về Saoto
                 </Link>
-                <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                  <li>
-                    <Link
-                      className="dropdown-item d-flex align-items-center"
-                      to="/my-profile"
-                    >
-                      <span>Thông tin cá nhân</span>
-                    </Link>
-                  </li>
-                  {user?.role === "CUSTOMER" && (
-                    <li>
-                      <Link
-                        className="dropdown-item d-flex align-items-center"
-                        to="/my-booking"
-                      >
-                        <span>Đơn đặt xe</span>
-                      </Link>
-                    </li>
-                  )}
-                  {user?.role === "OWNER" && (
-                    <li>
-                      <Link
-                        className="dropdown-item d-flex align-items-center"
-                        to="/my-cars"
-                      >
-                        <span>Xe của tôi</span>
-                      </Link>
-                    </li>
-                  )}
-                  <li>
-                    <Link
-                      className="dropdown-item d-flex align-items-center"
-                      to="/wallet"
-                    >
-                      <span>Ví của tôi</span>
-                    </Link>
-                  </li>
-                  {user?.role === "OWNER" && (
-                    <li>
-                      <Link
-                        className="dropdown-item d-flex align-items-center"
-                        to="/my-reports"
-                      >
-                        <span>Thống kê</span>
-                      </Link>
-                    </li>
-                  )}
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <button
-                      className="dropdown-item d-flex align-items-center"
-                      onClick={() => setShow(true)}
-                    >
-                      <span>Đăng xuất</span>
-                    </button>
-                  </li>
-                </ul>
-              </li>
-            ) : (
-              <>
-                <div className="top-[23px] left-[989px] absolute">
+              </div>
+              <div className="left-[121px] top-[16px] absolute text-center ">
+                <Link
+                  to="/"
+                  className="text-black text-lg font-medium font-['Roboto'] leading-normal tracking-wide"
+                >
+                  Trở thành chủ xe
+                </Link>
+              </div>
+              {isAuthenticated ? (
+                <li className="nav-item dropdown pe-3">
                   <Link
-                    onClick={onOpenSignupModal}
-                    className="[font-family:'Roboto',Helvetica] font-medium text-black text-lg text-center tracking-[0.50px] leading-6 whitespace-nowrap"
+                    className="nav-link nav-profile d-flex align-items-center pe-0"
+                    to="#"
+                    data-bs-toggle="dropdown"
                   >
-                    Đăng ký
+                    <img
+                      src={user?.avatar || placeholderImg}
+                      alt="Profile"
+                      className="rounded-circle img-profile"
+                    />
+                    <span className="d-none d-md-block dropdown-toggle ps-2 fs-6">
+                      {user?.username}
+                    </span>
                   </Link>
-                </div>
-
-                <div className="absolute w-36 h-14 top-1.5 left-[1101px]">
-                  <div className="relative h-[58px] -top-px -left-px rounded-[10px]">
-                    <Link onClick={onOpenLoginModal}>
-                      <div className="absolute w-36 h-[58px] top-0 left-0 rounded-[10px] border border-solid border-black">
-                        <div className="top-[17px] left-[27px] absolute [font-family:'Roboto',Helvetica] font-medium text-black text-lg text-center tracking-[0.50px] leading-6 whitespace-nowrap">
+                  {renderProfileMenu()}
+                </li>
+              ) : (
+                <>
+                  <div className="left-[309px] top-[17px] absolute text-center ">
+                    <Link
+                      onClick={() => openAuthModal(false)}
+                      className="text-black text-lg font-medium font-['Roboto'] leading-normal tracking-wide"
+                    >
+                      Đăng ký
+                    </Link>
+                  </div>
+                  <div className="w-36 h-14 left-[421px] top-0 absolute">
+                    <Link onClick={() => openAuthModal(true)}>
+                      <div className="w-36 h-14 left-0 top-0 absolute rounded-lg border border-black">
+                        <div className="left-[26px] top-[16px] absolute text-center text-black text-lg font-medium font-['Roboto'] leading-normal tracking-wide">
                           Đăng nhập
                         </div>
                       </div>
                     </Link>
                   </div>
-                </div>
-              </>
-            )}
-
-            <img
-              className="absolute w-px h-14 top-1.5 left-[966px] object-cover"
-              alt="Line"
-              src="https://c.animaapp.com/kjwTAoO7/img/line-1.svg"
-            />
+                </>
+              )}
+              <div data-svg-wrapper className="left-[286px] top-0 absolute">
+                <svg
+                  width="2"
+                  height="56"
+                  viewBox="0 0 2 56"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path opacity="0.3" d="M1 0L1 56" stroke="black" />
+                </svg>
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
+        </div> */}
       <LogoutModal show={show} onClose={() => setShow(false)} />
     </>
   );

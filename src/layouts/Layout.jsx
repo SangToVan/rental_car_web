@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 import ScrollTop from "../components/ScrollTop";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import CarItem from "../components/cars/CarItem";
 import AuthModal from "../components/modals/AuthModal/AuthModal";
 
 export default function Layout() {
@@ -25,7 +24,6 @@ export default function Layout() {
     <>
       <ScrollTop />
       <Header onOpenAuthModal={handleOpenAuthModal} />
-      {/* <CarItem /> */}
       <main
         id="main"
         className="main"

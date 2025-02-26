@@ -1,46 +1,43 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 import {
   getUser,
   isLogin,
   removeLoginInfo,
+  setRefreshToken,
   setToken,
-  setUser
-} from '../services/storageService'
+  setUser,
+} from "../services/storageService";
 
 const initialState = {
   isAuthenticated: isLogin(),
-  user: getUser()
-}
+  user: getUser(),
+};
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     setUpdatedUser: (state, action) => {
-      const updatedUser = action.payload
-      if (updatedUser) {
-        state.user = updatedUser
-        setUser(updatedUser)
-      } else
-        console.warn(
-          'Can not update user in state because updatedUser is:',
-          updatedUser
-        )
+      const updatedUser = action.payload;
+      state.user = updatedUser;
+      setUser(updatedUser);
     },
     login: (state, action) => {
-      state.isAuthenticated = true
-      state.user = action.payload.user
-      setToken(action.payload.access_token)
-      setUser(action.payload.user)
+      const { user, access_token, refresh_token } = action.payload;
+      state.isAuthenticated = true;
+      state.user = user;
+      setToken(access_token);
+      setRefreshToken(refresh_token);
+      setUser(user);
     },
     logout: (state) => {
-      state.isAuthenticated = false
-      state.user = null
-      removeLoginInfo()
-    }
-  }
-})
+      state.isAuthenticated = false;
+      state.user = null;
+      removeLoginInfo();
+    },
+  },
+});
 
-export const { setUpdatedUser, login, logout } = authSlice.actions
+export const { setUpdatedUser, login, logout } = authSlice.actions;
 
-export default authSlice.reducer
+export default authSlice.reducer;
